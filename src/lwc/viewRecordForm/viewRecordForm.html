@@ -1,0 +1,57 @@
+<!-- View Record Form -->
+<template>
+    <lightning-record-view-form
+            object-api-name={ACCOUNT_OBJECT_NAME}
+            onload={handleLoadFields}
+            record-id={recordId}>
+        <div class="slds-grid slds-wrap slds-grid_vertical-align-start slds-grid_align-spread">
+            <div class="slds-col slds-size_8-of-12">
+                <div class="slds-grid slds-wrap">
+                    <template for:each={fieldValues} for:item="field">
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_large slds-align-bottom" key={field.apiName}>
+                            <p class="slds-text-title_bold slds-text-body_regular">{field.label}</p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_large slds-align-bottom" key={field.apiName}>
+                            <p class="slds-text-body_regular">{field.value}</p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="slds-col slds-size_4-of-12 slds-text-align_right">
+                <lightning-button class="slds-p-around_large"
+                                  label="Edit"
+                                  onclick={handleEditClick}
+                                  title="Looks like a link"
+                                  variant="base">
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-record-view-form>
+    <div class="slds-grid slds-wrap slds-grid_vertical-align-start">
+        <div class="slds-col slds-size_8-of-12">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-2 slds-p-around_large" key={field.apiName}>
+                    <p class="slds-text-title_bold slds-text-body_regular">Account Statement</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_large" key={field.apiName}>
+                    <template for:each={filePills} for:item="file">
+                        <div class="slds-grid slds-align-bottom" key={file.ContentDocumentId}>
+                            <lightning-button-icon
+                                    alternative-text="Download"
+                                    class="slds-m-right_x-small slds-p-bottom_small slds-align-bottom"
+                                    data-contentdocumentid={file.ContentDocumentId}
+                                    icon-name="utility:download"
+                                    onclick={handleDownload}
+                                    size="small"
+                                    variant="bare">
+                            </lightning-button-icon>
+                            <span>{file.label}</span>
+                        </div>
+                    </template>
+                </div>
+                <div class="slds-col slds-size_4-of-12 slds-p-around_small">
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

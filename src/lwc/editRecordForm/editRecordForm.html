@@ -1,0 +1,136 @@
+<!-- Edit Record Form -->
+<template>
+    <div class="slds-grid slds-wrap">
+        <!-- First column -->
+        <div class="slds-col slds-large-size_3-of-12 slds-p-around_small">
+            <lightning-input
+                    data-id="Registration_No_Of_Company__c"
+                    label={registrationNumberLabel}
+                    onchange={handleFieldChange}
+                    type="text"
+                    value={account.Registration_No_Of_Company__c}>
+            </lightning-input>
+            <lightning-combobox
+                    data-id="Bank_Country__c"
+                    label={bankCountryLabel}
+                    onchange={handleFieldChange}
+                    options={countryOptions}
+                    placeholder="Select Country"
+                    required
+                    value={account.Bank_Country__c}>
+            </lightning-combobox>
+            <lightning-input
+                    data-id="Routing_Number__c"
+                    label={routingNumberLabel}
+                    onchange={handleFieldChange}
+                    type="number"
+                    value={account.Routing_Number__c}>
+            </lightning-input>
+            <lightning-input
+                    data-id="Swift_Code__c"
+                    label={swiftCodeLabel}
+                    onchange={handleFieldChange}
+                    required
+                    type="text"
+                    value={account.Swift_Code__c}>
+            </lightning-input>
+            <lightning-combobox
+                    data-id="Currency__c"
+                    label={currencyLabel}
+                    onchange={handleFieldChange}
+                    options={currencyOptions}
+                    placeholder="Select Currency"
+                    required
+                    value={account.Currency__c}>
+            </lightning-combobox>
+        </div>
+        <!-- Second column -->
+        <div class="slds-col slds-large-size_3-of-12 slds-p-around_small">
+            <lightning-input
+                    data-id="Bank_Name__c"
+                    label={bankNameLabel}
+                    onchange={handleFieldChange}
+                    required
+                    type="text"
+                    value={account.Bank_Name__c}>
+            </lightning-input>
+            <lightning-input
+                    data-id="Bank_Address__c"
+                    label={bankAddressLabel}
+                    onchange={handleFieldChange}
+                    type="text"
+                    value={account.Bank_Address__c}>
+            </lightning-input>
+            <lightning-input
+                    data-id="AccountNumber"
+                    label={accountNumberLabel}
+                    onchange={handleFieldChange}
+                    required
+                    type="text"
+                    value={account.AccountNumber}>
+            </lightning-input>
+            <lightning-input
+                    data-id="Iban__c"
+                    label={ibanLabel}
+                    onchange={handleFieldChange}
+                    required
+                    type="number"
+                    value={account.Iban__c}>
+            </lightning-input>
+
+        </div>
+    </div>
+    <div class="slds-p-around_small">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="file-upload">
+                <abbr class="slds-required" title="required">*</abbr>
+                {fileUploadLabel}
+            </label>
+            <div class="slds-form-element__control">
+                <div class="slds-file-selector slds-file-selector_files">
+                    <div class="slds-file-selector__dropzone">
+                        <input
+                                accept="image/png"
+                                aria-labelledby="file-upload-input-103 file-selector-secondary-label102"
+                                class="slds-file-selector__input slds-assistive-text"
+                                id="file-upload"
+                                onchange={handleFilesChange}
+                                type="file">
+                        <label class="slds-file-selector__body" for="file-upload"
+                               id="file-selector-secondary-label102">
+                        <span class="slds-file-selector__button slds-button slds-button_neutral">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_left">
+                                <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#upload"></use>
+                            </svg>Upload Files
+                        </span>
+                            <span class="slds-file-selector__text slds-medium-show">or Drop Files</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template if:false={isFileUploaded}>
+            <div class="slds-text-color_error">Complete this field.</div>
+        </template>
+        <div class="slds-m-top_small">
+                <lightning-pill-container
+                        items={filePills}
+                        onitemremove={handleRemoveFile}>
+                </lightning-pill-container>
+
+        </div>
+    </div>
+    <div class="slds-grid slds-grid_align-end slds-p-around_medium">
+        <div class="slds-col">
+            <lightning-button
+                    class="slds-m-top_small"
+                    disabled={isSaveDisabled}
+                    label="Save"
+                    onclick={handleSave}
+                    variant='destructive'>
+            </lightning-button>
+        </div>
+    </div>
+</template>
+

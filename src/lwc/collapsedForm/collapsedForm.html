@@ -1,0 +1,55 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-grid_vertical-align-center">
+            <div class="slds-m-around_xx-small">
+                <lightning-icon alternative-text="Credit Card Icon" icon-name="utility:currency"></lightning-icon>
+            </div>
+            <div>
+                <span class=" slds-text-heading_medium">Finance Information</span>
+            </div>
+            <div class="slds-col_bump-left slds-p-right_medium">
+                <span class={statusClass}>{statusMessage}</span>
+            </div>
+            <div>
+                <lightning-button-icon
+                        alternative-text="Chevron Right" class="slds-p-right_medium"
+                        icon-name={buttonIcon}
+                        onclick={toggleSection}>
+                </lightning-button-icon>
+            </div>
+        </div>
+    </lightning-card>
+
+    <template if:true={isSectionOpen}>
+        <lightning-card class="slds-m-around_small">
+            <template if:true={isEditMode}>
+                <c-edit-record-form
+                        account={account}
+                        fields={accountFields}
+                        file-pills={filePills}
+                        file-upload-label={fileUploadLabel}
+                        onaccount_changed={handleAccountChange}
+                        onfield_validation_status={handleValidationStatusChange}
+                        onnew_file_added={handleNewFileAdded}
+                        onremove_file={handleRemoveFile}
+                        onsave_account_form={handleSaveForm}>
+                </c-edit-record-form>
+            </template>
+            <template if:false={isEditMode}>
+                <c-view-record-form
+                        fields={accountFields}
+                        file-pills={filePills}
+                        onedit_button_pressed={handleEditButtonPressed}
+                        record-id={recordId}>
+                </c-view-record-form>
+            </template>
+        </lightning-card>
+    </template>
+
+</template>
+
+
+
+
+
+

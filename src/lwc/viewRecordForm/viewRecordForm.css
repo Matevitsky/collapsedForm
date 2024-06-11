@@ -1,0 +1,33 @@
+/**
+ * Created by sergeymatevitsky on 08.06.2024.
+ */
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.label {
+    font-weight: bold;
+}
+.value {
+    color: #757575;
+}
+.file {
+    color: #1a73e8;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.edit-link {
+    color: #1a73e8;
+    text-decoration: underline;
+    cursor: pointer;
+    align-self: flex-end;
+}
